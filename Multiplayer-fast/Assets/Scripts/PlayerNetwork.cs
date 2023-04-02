@@ -11,7 +11,7 @@ public class PlayerNetwork : NetworkBehaviour
     {
         cam = GetComponent<Camera>();
         if(IsHost)
-        cam.targetDisplay = 1;
+        cam.targetDisplay = 2;
     }
     private void Update()
     {
