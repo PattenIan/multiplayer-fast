@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+
 public class PlayerNetwork : NetworkBehaviour
 {
     private Camera cam;
-    private void Start()
+    private void Awake()
     {
         cam = GetComponent<Camera>();
-        if (!IsHost)
-        {
-            cam.targetDisplay = 2;
-            print("HEy");
-        }
+        if(IsHost)
+        cam.targetDisplay = 1;
     }
     private void Update()
     {
