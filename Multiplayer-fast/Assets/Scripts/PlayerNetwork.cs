@@ -9,9 +9,10 @@ public class PlayerNetwork : NetworkBehaviour
     private void Start()
     {
         cam = GetComponent<Camera>();
-        if (!IsOwner)
+        if (!IsHost)
         {
             cam.targetDisplay = 2;
+            print("HEy");
         }
     }
     private void Update()
