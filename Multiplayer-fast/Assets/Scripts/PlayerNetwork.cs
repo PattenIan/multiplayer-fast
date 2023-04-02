@@ -5,6 +5,15 @@ using Unity.Netcode;
 
 public class PlayerNetwork : NetworkBehaviour
 {
+    private Camera cam;
+    private void Start()
+    {
+        cam = GetComponent<Camera>();
+        if (!IsOwner)
+        {
+            cam.targetDisplay = 2;
+        }
+    }
     private void Update()
     {
         if (!IsOwner) { return; }
