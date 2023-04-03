@@ -7,11 +7,11 @@ using UnityEngine.Networking;
 
 public class PlayerNetwork : NetworkBehaviour
 {
-    private Camera cam;
-    private Camera notHostCam;
-    private void Awake()
+    public Camera cam;
+    
+    private void Start()
     {
-        cam = GetComponent<Camera>();
+        
         if (IsLocalPlayer) return;
         
             cam.enabled= false;
