@@ -24,7 +24,8 @@ public class PlayerHealthScript : NetworkBehaviour
 
     public void HealthUpdate(int Damage)
     {
-        if (!IsOwner) { return; }
+        
+
         if (Health < 0)
         {
             cam.enabled= false;
