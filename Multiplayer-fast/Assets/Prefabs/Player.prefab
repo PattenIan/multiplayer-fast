@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8222060022045134100}
   - component: {fileID: 6296834248072657032}
   - component: {fileID: 7261848506275192719}
-  m_Layer: 0
+  - component: {fileID: 1627625791545798853}
+  m_Layer: 6
   m_Name: PlayerCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +100,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sens: 181
   PlayerRef: {fileID: 2632807943268169984}
+--- !u!114 &1627625791545798853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894368387800108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633b17131d21d0444931a28162cb43c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &2632807943183159511
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +127,7 @@ GameObject:
   - component: {fileID: 2632807943183159507}
   - component: {fileID: 2632807943183159508}
   - component: {fileID: 2632807943183159509}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +226,8 @@ GameObject:
   - component: {fileID: 4540991749080626507}
   - component: {fileID: -164909077610238438}
   - component: {fileID: 6581377299956366970}
-  m_Layer: 0
+  - component: {fileID: 5423329963836100583}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,3 +329,16 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &5423329963836100583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632807943268169986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3986613db09baf24a918882d6101801d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 8222060022045134100}
