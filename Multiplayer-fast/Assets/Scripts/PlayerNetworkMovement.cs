@@ -7,7 +7,6 @@ using System.Net.NetworkInformation;
 
 public class PlayerNetworkMovement : NetworkBehaviour
 {
-    public Camera cam;
     [SerializeField, HideInInspector] private float MoveSpeed;
     [SerializeField, HideInInspector] private float HorizontalInput;
     [SerializeField, HideInInspector] private float VerticalInput;
@@ -49,8 +48,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
         rb= GetComponent<Rigidbody>();
         rb.freezeRotation= true;
         MoveSpeed = 7;
-        if (IsLocalPlayer) return;
-            cam.enabled= false;
+        
         
         
     }
