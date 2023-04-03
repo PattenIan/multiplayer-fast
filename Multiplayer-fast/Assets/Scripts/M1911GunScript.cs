@@ -24,13 +24,15 @@ public class M1911GunScript : NetworkBehaviour
         }
     }
 
+            Vector3 Hitpoint;
     void Shoot()
     {
         RaycastHit hitInfo;
         if(Physics.Raycast(transform.position, transform.forward, out hitInfo, Mathf.Infinity, EnemyLayer)) 
         {
-            
+            Hitpoint= hitInfo.point;
             var EnemyHit = hitInfo.transform.gameObject;
+            
             if(EnemyHit!=this.gameObject)
             {
 
@@ -39,5 +41,11 @@ public class M1911GunScript : NetworkBehaviour
 
         }
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Hitpoint);
     }
 }

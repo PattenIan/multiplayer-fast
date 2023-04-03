@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Unity.Netcode;
+using TMPro;
 
 public class PlayerHealthScript : NetworkBehaviour
 {
 
-    private int Health;
+    public int Health;
     private int MaxHealth = 100;
-    public Camera cam;
+    [SerializeField] TextMeshProUGUI text;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,8 @@ public class PlayerHealthScript : NetworkBehaviour
 
         if (Health < 0)
         {
-            cam.enabled= false;
+            
+            text.enabled = true;
         }
         Health -= Damage;
 
