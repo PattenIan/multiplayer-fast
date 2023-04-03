@@ -453,9 +453,18 @@ MonoBehaviour:
   MoveSpeed: 0
   HorizontalInput: 0
   VerticalInput: 0
-  WalkSpeed: 0
-  SpringSeed: 0
+  WalkSpeed: 7
+  SpringSeed: 12
   GroundDrag: 5
+  JumpForce: 7
+  AirMultiplier: 0.3
+  JumpResetCooldown: 0.25
+  JumpResat: 0
+  PlayerHeight: 0
+  WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 128
+  IsGrounded: 0
   rb: {fileID: 0}
 --- !u!114 &-164909077610238438
 MonoBehaviour:
