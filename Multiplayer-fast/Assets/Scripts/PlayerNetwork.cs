@@ -7,11 +7,15 @@ using Unity.Netcode;
 public class PlayerNetwork : NetworkBehaviour
 {
     private Camera cam;
+    private Camera notHostCam;
     private void Awake()
     {
         cam = GetComponent<Camera>();
-        if(IsHost)
-        cam.targetDisplay = 2;
+        if (IsLocalPlayer)
+        {
+            cam.enabled= false;
+        }
+        
     }
     private void Update()
     {
