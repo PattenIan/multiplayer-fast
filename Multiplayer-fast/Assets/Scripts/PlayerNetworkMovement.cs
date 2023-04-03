@@ -14,7 +14,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
 
     [Header("Movement")]
     [SerializeField] private float WalkSpeed;
-    [SerializeField] private float SpringSeed;
+    [SerializeField] private float SprintSpeed;
     [SerializeField] private float GroundDrag;
 
     [Header("Jump")]
@@ -28,11 +28,23 @@ public class PlayerNetworkMovement : NetworkBehaviour
     [SerializeField] private LayerMask WhatIsGround;
     [SerializeField] private bool IsGrounded;
 
+    [Header("Movement States")]
+    [SerializeField] private MovementState state;
+
     [Header("Refrences")]
     [SerializeField] private Rigidbody rb;
 
+
+    enum MovementState
+    {
+        Walk,
+        Sprint,
+        Air,
+        Crouch
+    }
     private void Start()
     {
+        transform.position = new Vector3(0, 2, 0);
         JumpResat = true;
         rb= GetComponent<Rigidbody>();
         rb.freezeRotation= true;
@@ -46,12 +58,30 @@ public class PlayerNetworkMovement : NetworkBehaviour
     {
         if (!IsOwner) { return; }
         IsGrounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, WhatIsGround);
-        if (IsGrounded)
+        if (state == MovementState.Walk || state == MovementState.Sprint)
             rb.drag = GroundDrag;
         else
             rb.drag = 0f;
         MyInputs();
         SpeedControl();
+        StateHandler();
+    }
+
+    void StateHandler()
+    {
+        if(IsGrounded && Input.GetKey(KeyCode.LeftShift))
+        {
+            state = MovementState.Sprint;
+            MoveSpeed = SprintSpeed;
+        } else if (IsGrounded)
+        {
+            state = MovementState.Walk;
+            MoveSpeed = WalkSpeed;
+        }
+        else
+        {
+            state = MovementState.Air;
+        }
     }
 
     private void FixedUpdate()
