@@ -8,20 +8,28 @@ public class M1911GunScript : NetworkBehaviour
 {
     [SerializeField] Animator gunAnimator;
     [SerializeField] private LayerMask EnemyLayer;
+    bool ShootAgainTime;
+    [SerializeField] ParticleSystem muzzleflash;
     // Start is called before the first frame update
     void Start()
     {
-        gunAnimator = GetComponent<Animator>();
+        gunAnimator = gameObject.GetComponentInChildren<Animator>();
+        ShootAgainTime = true;
+        muzzleflash.Stop();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!IsOwner) { return; }
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && ShootAgainTime)
         {
             Shoot();
+            ShootAgainTime = false;
+            muzzleflash.Play();
+            
             gunAnimator.SetBool("isShooting", true);
+            Invoke(nameof(ResetShot), 0.75f);
         }
     }
 
@@ -36,12 +44,20 @@ public class M1911GunScript : NetworkBehaviour
             
             if(EnemyHit!=this.gameObject)
             {
-
             EnemyHit.GetComponent<PlayerHealthScript>().HealthUpdate(15);
             }
 
         }
 
+    }
+
+    
+    void ResetShot()
+    {
+        
+        muzzleflash.Stop();
+        gunAnimator.SetBool("isShooting", false);
+        ShootAgainTime = true;
     }
 
     private void OnDrawGizmos()
