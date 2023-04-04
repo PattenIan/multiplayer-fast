@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8222060022045134100}
   - component: {fileID: 7261848506275192719}
   - component: {fileID: 1627625791545798853}
+  - component: {fileID: 6223522261194337199}
   m_Layer: 6
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -110,6 +111,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   muzzleflash: {fileID: 5673320245454492254}
+--- !u!114 &6223522261194337199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894368387800108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a1502333332cd45959ac33887c56f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RocketPrefab: {fileID: 8141004162872330958, guid: 9cd05e875cdccd043816e208e78e8577, type: 3}
+  RocketSpeed: 15
+  FirePoint: {fileID: 3896711751189693947}
 --- !u!1 &255866068084728454
 GameObject:
   m_ObjectHideFlags: 0
