@@ -6,12 +6,12 @@ using Unity.Netcode;
 
 public class M1911GunScript : NetworkBehaviour
 {
-
+    [SerializeField] Animator gunAnimator;
     [SerializeField] private LayerMask EnemyLayer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gunAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -21,6 +21,7 @@ public class M1911GunScript : NetworkBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Shoot();
+            gunAnimator.SetBool("isShooting", true);
         }
     }
 
