@@ -32,7 +32,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
 
     [Header("Refrences")]
     [SerializeField] private Rigidbody rb;
-
+    [SerializeField] Camera cam;
 
     enum MovementState
     {
@@ -48,9 +48,11 @@ public class PlayerNetworkMovement : NetworkBehaviour
         rb= GetComponent<Rigidbody>();
         rb.freezeRotation= true;
         MoveSpeed = 7;
-        
-        
-        
+        if (IsLocalPlayer) return;
+        cam.enabled = false;
+
+
+
     }
     private void Update()
     {

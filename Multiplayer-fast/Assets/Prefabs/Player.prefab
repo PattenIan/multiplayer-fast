@@ -503,6 +503,7 @@ MonoBehaviour:
   IsGrounded: 0
   state: 0
   rb: {fileID: 0}
+  cam: {fileID: 8222060022045134100}
 --- !u!114 &-164909077610238438
 MonoBehaviour:
   m_ObjectHideFlags: 0

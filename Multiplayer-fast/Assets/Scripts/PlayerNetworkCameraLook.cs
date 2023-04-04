@@ -10,7 +10,7 @@ public class PlayerNetworkCameraLook : NetworkBehaviour
 {
     [Range(25f, 250f)]
     [SerializeField] private float Sens;
-
+    
     [SerializeField] private Transform PlayerRef;
 
     float xRotation;
@@ -20,6 +20,7 @@ public class PlayerNetworkCameraLook : NetworkBehaviour
         if (!IsOwner) { return; }
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
     }
 
     // Update is called once per frame

@@ -18,6 +18,7 @@ public class SwingingScript : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!IsOwner) { return; }
         rb = GetComponent<Rigidbody>();
         lr = GetComponent<LineRenderer>();
         
