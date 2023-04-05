@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -16,6 +18,9 @@ public class TestRelay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI joinTextField;
     [SerializeField] private TextMeshProUGUI joinCodeInput;
 
+    static string joinCode;
+
+
     private async void Start()
     {
         await UnityServices.InitializeAsync();
@@ -28,22 +33,31 @@ public class TestRelay : MonoBehaviour
         AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 
-    public async void CreateRelay()
+    public static async void CreateRelay(Action onCreated = null)
     {
         try
         {
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(1);
 
-            string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-            joinTextField.text = joinCode;
+            SetJoinCode(await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId));
 
             RelayServerData relayServarData = new RelayServerData(allocation, "dtls");
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServarData);
+            onCreated?.Invoke();
         }
         catch(RelayServiceException e)
         {
             Debug.Log(e);
         }
+    }
+
+    private static void SetJoinCode(string s)
+    {
+        joinCode = s;
+    }
+    public static string GetJoinCode()
+    {
+        return joinCode;
     }
 
     public async void JoinRelay(string joinCode)
