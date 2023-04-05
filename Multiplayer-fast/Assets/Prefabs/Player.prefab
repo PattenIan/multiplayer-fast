@@ -526,6 +526,8 @@ MonoBehaviour:
   CameraRotationAmoutVertical: 6
   CameraFOVAmout: 63
   pncl: {fileID: 7261848506275192719}
+  SwingingSpeed: 20
+  IsSwinging: 0
   rb: {fileID: 0}
   cam: {fileID: 8222060022045134100}
 --- !u!114 &-164909077610238438
@@ -603,6 +605,7 @@ MonoBehaviour:
     m_Bits: 512
   lr: {fileID: 6943234686584234674}
   GrapplingHookTip: {fileID: 3896711751189693947}
+  pm: {fileID: 4540991749080626507}
 --- !u!120 &6943234686584234674
 LineRenderer:
   m_ObjectHideFlags: 0

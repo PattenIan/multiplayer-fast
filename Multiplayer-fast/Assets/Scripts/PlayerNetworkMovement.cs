@@ -7,11 +7,11 @@ using System.Net.NetworkInformation;
 
 public class PlayerNetworkMovement : NetworkBehaviour
 {
-    [SerializeField, HideInInspector] private float MoveSpeed;
     [SerializeField, HideInInspector] private float HorizontalInput;
     [SerializeField, HideInInspector] private float VerticalInput;
 
     [Header("Movement")]
+    [SerializeField] private float MoveSpeed;
     [SerializeField] private float WalkSpeed;
     [SerializeField] private float SprintSpeed;
     [SerializeField] private float GroundDrag;
@@ -39,6 +39,11 @@ public class PlayerNetworkMovement : NetworkBehaviour
     [SerializeField] private float CameraFOVAmout;
     [SerializeField] private PlayerNetworkCameraLook pncl;
 
+    [Header("Swinging")]
+    [SerializeField] private float SwingingSpeed;
+    [SerializeField] public bool IsSwinging;
+    
+
     [Header("Refrences")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] Camera cam;
@@ -48,6 +53,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
         Walk,
         Sprint,
         Air,
+        Swinging,
         Crouch
     }
     private void Start()
@@ -76,11 +82,17 @@ public class PlayerNetworkMovement : NetworkBehaviour
         MyInputs();
         SpeedControl();
         StateHandler();
+        
     }
 
     void StateHandler()
     {
-        if(IsGrounded && Input.GetKey(KeyCode.LeftShift))
+        if (IsSwinging)
+        {
+            state = MovementState.Swinging;
+            MoveSpeed = SwingingSpeed;
+        }
+        else if(IsGrounded && Input.GetKey(KeyCode.LeftShift))
         {
             state = MovementState.Sprint;
             MoveSpeed = SprintSpeed;
@@ -131,10 +143,17 @@ public class PlayerNetworkMovement : NetworkBehaviour
     void SpeedControl()
     {
         Vector3 CurVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 CurVelY = new Vector3(0f,rb.velocity.y, 0f);
+        
         if(CurVel.magnitude > MoveSpeed)
         {
             Vector3 LimitedVel = CurVel.normalized* MoveSpeed;
             rb.velocity = new Vector3(LimitedVel.x, rb.velocity.y, LimitedVel.z);
+        }
+        if(CurVelY.magnitude > 20)
+        {
+            Vector3 LimitedVelY = CurVelY.normalized * 20;
+            rb.velocity = new Vector3(rb.velocity.x, LimitedVelY.y, rb.velocity.z);
         }
     }
 

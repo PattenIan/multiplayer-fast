@@ -13,6 +13,7 @@ public class SwingingScript : NetworkBehaviour
     [SerializeField] LayerMask Grappable;
     [SerializeField] private LineRenderer lr;
     [SerializeField] private Transform GrapplingHookTip;
+    [SerializeField] private PlayerNetworkMovement pm;
 
     SpringJoint joint;
     // Start is called before the first frame update
@@ -32,17 +33,20 @@ public class SwingingScript : NetworkBehaviour
       if (Input.GetMouseButtonDown(1))
       {
             StartSwing();
+            
       }  
 
       if(Input.GetMouseButtonUp(1))
         {
             StopSwinging();
+            
         }
     }
 
     Vector3 HitPoint;
     void StartSwing()
     {
+        pm.IsSwinging = true;
         RaycastHit HitInfo;
         if(Physics.Raycast(cam.transform.position,cam.transform.forward,out HitInfo, 20f, Grappable))
         {
@@ -81,6 +85,7 @@ public class SwingingScript : NetworkBehaviour
 
     void StopSwinging()
     {
+        pm.IsSwinging = false;
         lr.positionCount = 0;
         Destroy(joint);
     }
