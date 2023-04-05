@@ -47,9 +47,11 @@ public class PlayerNetworkMovement : NetworkBehaviour
     [Header("Refrences")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] Camera cam;
-
+    [SerializeField, HideInInspector] public bool freeze;
+    [SerializeField, HideInInspector] public bool activeGrappel;
     enum MovementState
     {
+        Freeze,
         Walk,
         Sprint,
         Air,
@@ -75,7 +77,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
     {
         if (!IsOwner) { return; }
         IsGrounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, WhatIsGround);
-        if (state == MovementState.Walk || state == MovementState.Sprint)
+        if (IsGrounded && !activeGrappel)
             rb.drag = GroundDrag;
         else
             rb.drag = 0f;
@@ -87,7 +89,13 @@ public class PlayerNetworkMovement : NetworkBehaviour
 
     void StateHandler()
     {
-        if (IsSwinging)
+        if(freeze)
+        {
+            state = MovementState.Freeze;
+            MoveSpeed = 0;
+            rb.velocity = Vector3.zero;
+        }
+        else if (IsSwinging)
         {
             state = MovementState.Swinging;
             MoveSpeed = SwingingSpeed;
@@ -129,6 +137,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
 
     void MovePlayer()
     {
+        if (activeGrappel) return;
         Vector3 MoveDir = transform.forward * VerticalInput + transform.right * HorizontalInput;
         
          if (IsGrounded)
@@ -143,6 +152,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
 
     void SpeedControl()
     {
+        if (activeGrappel) return;
         Vector3 CurVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         Vector3 CurVelY = new Vector3(0f,rb.velocity.y, 0f);
         
@@ -168,7 +178,37 @@ public class PlayerNetworkMovement : NetworkBehaviour
     {
         JumpResat = true;
     }
-    
+
+    private bool EnableMovementOnNextTouch;
+    public void JumpToPos(Vector3 targetPos, float TrajectoryHeight)
+    {
+        activeGrappel = true;
+        velocityToSet = CalculateJumpVelocity(transform.position, targetPos, TrajectoryHeight);
+        Invoke(nameof(SetVelocity), 0.1f);
+
+        Invoke(nameof(resetRestriction), 3f);
+    }
+
+    Vector3 velocityToSet;
+    void SetVelocity()
+    {
+        EnableMovementOnNextTouch = true;
+        rb.velocity =velocityToSet;
+    }
+    public void resetRestriction()
+    {
+        activeGrappel = false;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (EnableMovementOnNextTouch)
+        {
+            EnableMovementOnNextTouch = false;
+            resetRestriction();
+            GetComponent<GrappelingHook>().StopGrappel();
+        }
+    }
+
     void CameraMovement()
     {
         if(VerticalInput < 0 && state == MovementState.Walk || VerticalInput < 0 && state == MovementState.Sprint)
@@ -196,5 +236,16 @@ public class PlayerNetworkMovement : NetworkBehaviour
         {
             CamHolder.transform.localRotation = Quaternion.Lerp(CamHolder.transform.localRotation, Quaternion.Euler(0f, 0f, 0f), .1f);
         }
+    }
+
+    public Vector3 CalculateJumpVelocity(Vector3 StartPos, Vector3 EndPos, float TrajectoryHeight)
+    {
+        float gravity = Physics.gravity.y;
+        float displacementY = EndPos.y - StartPos.y;
+        Vector3 displacementXZ = new Vector3(EndPos.x - StartPos.x, 0f, EndPos.z - StartPos.z);
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * TrajectoryHeight);
+        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2*TrajectoryHeight/gravity) + Mathf.Sqrt(2*(displacementY-TrajectoryHeight)/gravity));
+
+        return velocityXZ + velocityY;
     }
 }

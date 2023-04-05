@@ -46,10 +46,12 @@ public class SwingingScript : NetworkBehaviour
     Vector3 HitPoint;
     void StartSwing()
     {
-        pm.IsSwinging = true;
         RaycastHit HitInfo;
         if(Physics.Raycast(cam.transform.position,cam.transform.forward,out HitInfo, 20f, Grappable))
         {
+            GetComponent<GrappelingHook>().StopGrappel();
+            pm.resetRestriction();
+        pm.IsSwinging = true;
             HitPoint = HitInfo.point;
             joint = gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
@@ -83,7 +85,7 @@ public class SwingingScript : NetworkBehaviour
         }
     }
 
-    void StopSwinging()
+    public void StopSwinging()
     {
         pm.IsSwinging = false;
         lr.positionCount = 0;
