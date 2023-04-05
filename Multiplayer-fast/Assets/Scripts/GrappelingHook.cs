@@ -34,7 +34,7 @@ public class GrappelingHook : NetworkBehaviour
     void Update()
     {
         if(!IsOwner) return;
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) && pm.IsGrounded)
         {
             StartGrappel();
         }

@@ -25,7 +25,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
     [Header("Ground check")]
     [SerializeField] private float PlayerHeight;
     [SerializeField] private LayerMask WhatIsGround;
-    [SerializeField] private bool IsGrounded;
+    [SerializeField] public bool IsGrounded;
 
     [Header("Movement States")]
     [SerializeField] private MovementState state;
