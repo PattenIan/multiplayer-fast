@@ -31,9 +31,9 @@ public class PlayerNetworkCameraLook : NetworkBehaviour
         float MouseX = Input.GetAxis("Mouse X") * Sens * Time.deltaTime;
 
         xRotation -= MouseY;
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
+        xRotation = Mathf.Clamp(xRotation, -50, 50);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        transform.localRotation = Quaternion.Euler(xRotation,0,0);
         PlayerRef.Rotate(Vector3.up * MouseX);
 
 

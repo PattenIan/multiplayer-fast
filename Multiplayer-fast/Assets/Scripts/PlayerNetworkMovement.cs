@@ -30,6 +30,14 @@ public class PlayerNetworkMovement : NetworkBehaviour
     [Header("Movement States")]
     [SerializeField] private MovementState state;
 
+    [Header("Camera Rotation")]
+    [SerializeField] private Transform OriginalCamTransform;
+    [SerializeField] private Transform CamHolder;
+    [SerializeField] private float OriginalFOV;
+    [SerializeField] private float CameraRotationAmoutHorizontal;
+    
+    [SerializeField] private float CameraFOVAmout;
+
     [Header("Refrences")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] Camera cam;
@@ -48,6 +56,8 @@ public class PlayerNetworkMovement : NetworkBehaviour
         rb= GetComponent<Rigidbody>();
         rb.freezeRotation= true;
         MoveSpeed = 7;
+        OriginalFOV = cam.fieldOfView;
+        OriginalCamTransform.rotation = cam.transform.rotation;
         if (IsLocalPlayer) return;
         cam.enabled = false;
 
@@ -88,6 +98,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
     {
         if (!IsOwner) { return; }
         MovePlayer();
+        CameraMovement();
     }
 
     void MyInputs()
@@ -135,5 +146,33 @@ public class PlayerNetworkMovement : NetworkBehaviour
     void ResetJump()
     {
         JumpResat = true;
+    }
+    
+    void CameraMovement()
+    {
+        if(VerticalInput < 0)
+        {
+            
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, CameraFOVAmout, .1f);
+            
+
+        }
+        else
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, OriginalFOV, .1f);
+            
+        }
+        if(HorizontalInput < 0)
+        {
+            CamHolder.transform.localRotation = Quaternion.Lerp(CamHolder.transform.localRotation, Quaternion.Euler(0f,0f,CameraRotationAmoutHorizontal), .1f);
+        } else if (HorizontalInput > 0)
+        {
+            CamHolder.transform.localRotation = Quaternion.Lerp(CamHolder.transform.localRotation, Quaternion.Euler(0f, 0f, -CameraRotationAmoutHorizontal), .1f);
+
+        }
+        else
+        {
+            CamHolder.transform.localRotation = Quaternion.Lerp(CamHolder.transform.localRotation, Quaternion.Euler(0f, 0f, 0f), .1f);
+        }
     }
 }
