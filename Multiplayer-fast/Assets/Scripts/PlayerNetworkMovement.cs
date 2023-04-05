@@ -35,8 +35,9 @@ public class PlayerNetworkMovement : NetworkBehaviour
     [SerializeField] private Transform CamHolder;
     [SerializeField] private float OriginalFOV;
     [SerializeField] private float CameraRotationAmoutHorizontal;
-    
+    [SerializeField] private float CameraRotationAmoutVertical;
     [SerializeField] private float CameraFOVAmout;
+    [SerializeField] private PlayerNetworkCameraLook pncl;
 
     [Header("Refrences")]
     [SerializeField] private Rigidbody rb;
@@ -150,7 +151,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
     
     void CameraMovement()
     {
-        if(VerticalInput < 0)
+        if(VerticalInput < 0 && state == MovementState.Walk || VerticalInput < 0 && state == MovementState.Sprint)
         {
             
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, CameraFOVAmout, .1f);
@@ -161,11 +162,12 @@ public class PlayerNetworkMovement : NetworkBehaviour
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, OriginalFOV, .1f);
             
+            
         }
-        if(HorizontalInput < 0)
+        if(HorizontalInput < 0 && state == MovementState.Sprint || HorizontalInput < 0 && state == MovementState.Walk )
         {
             CamHolder.transform.localRotation = Quaternion.Lerp(CamHolder.transform.localRotation, Quaternion.Euler(0f,0f,CameraRotationAmoutHorizontal), .1f);
-        } else if (HorizontalInput > 0)
+        } else if (HorizontalInput > 0 && state == MovementState.Sprint || HorizontalInput > 0 && state == MovementState.Walk)
         {
             CamHolder.transform.localRotation = Quaternion.Lerp(CamHolder.transform.localRotation, Quaternion.Euler(0f, 0f, -CameraRotationAmoutHorizontal), .1f);
 

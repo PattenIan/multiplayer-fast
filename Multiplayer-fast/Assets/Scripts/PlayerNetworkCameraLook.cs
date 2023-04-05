@@ -13,7 +13,9 @@ public class PlayerNetworkCameraLook : NetworkBehaviour
     
     [SerializeField] private Transform PlayerRef;
 
-    float xRotation;
+     float xRotation;
+    public float MouseY;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -27,11 +29,11 @@ public class PlayerNetworkCameraLook : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) { return; }
-        float MouseY = Input.GetAxis("Mouse Y") * Sens*Time.deltaTime;
+         MouseY = Input.GetAxis("Mouse Y") * Sens*Time.deltaTime;
         float MouseX = Input.GetAxis("Mouse X") * Sens * Time.deltaTime;
 
         xRotation -= MouseY;
-        xRotation = Mathf.Clamp(xRotation, -50, 50);
+        xRotation = Mathf.Clamp(xRotation, -90, 90);
 
         transform.localRotation = Quaternion.Euler(xRotation,0,0);
         PlayerRef.Rotate(Vector3.up * MouseX);

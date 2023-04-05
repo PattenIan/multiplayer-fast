@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sens: 181
   PlayerRef: {fileID: 2632807943268169984}
+  MouseY: 0
 --- !u!114 &1627625791545798853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +523,9 @@ MonoBehaviour:
   CamHolder: {fileID: 1585304037955141592}
   OriginalFOV: 0
   CameraRotationAmoutHorizontal: 6
+  CameraRotationAmoutVertical: 6
   CameraFOVAmout: 63
+  pncl: {fileID: 7261848506275192719}
   rb: {fileID: 0}
   cam: {fileID: 8222060022045134100}
 --- !u!114 &-164909077610238438
