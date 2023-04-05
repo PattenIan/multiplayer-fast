@@ -38,6 +38,15 @@ public class PlayerNetworkCameraLook : NetworkBehaviour
         transform.localRotation = Quaternion.Euler(xRotation,0,0);
         PlayerRef.Rotate(Vector3.up * MouseX);
 
-
+        if (PauseMenu.gameIsPaused == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 }
