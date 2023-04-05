@@ -22,7 +22,7 @@ public class M1911GunScript : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) { return; }
-        if(Input.GetMouseButtonDown(0) && ShootAgainTime)
+        if(Input.GetMouseButtonDown(0) && ShootAgainTime && !PauseMenu.gameIsPaused)
         {
             Shoot();
             ShootAgainTime = false;

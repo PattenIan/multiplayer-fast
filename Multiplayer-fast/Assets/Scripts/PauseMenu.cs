@@ -12,8 +12,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI joinTextField;
     [SerializeField] Button getCodeButton;
 
-
-
     public static bool gameIsPaused = false;
 
     private void Update()
@@ -45,6 +43,6 @@ public class PauseMenu : MonoBehaviour
 
     public void GetCode()
     {
-        joinTextField.text = NetworkManagerUI.network.GetActiveJoinCode();
+        joinTextField.text = TestRelay.GetJoinCode();
     }
 }

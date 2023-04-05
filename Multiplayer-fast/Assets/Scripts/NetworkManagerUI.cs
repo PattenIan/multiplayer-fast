@@ -28,22 +28,12 @@ public class NetworkManagerUI : MonoBehaviour
 
             await relayCreated.Task; // wait for relay creation to complete
 
-            SetJoinCode(TestRelay.GetJoinCode());
+            Debug.Log(TestRelay.GetJoinCode());
             NetworkManager.Singleton.StartHost();
         });
         clientBtn.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartClient();
         });
-    }
-
-    private void SetJoinCode(String s)
-    {
-        activeJoinCode = s;
-    }
-    
-    public String GetActiveJoinCode()
-    {
-        return activeJoinCode;
     }
 }
