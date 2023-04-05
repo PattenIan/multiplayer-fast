@@ -522,7 +522,7 @@ MonoBehaviour:
   OriginalCamTransform: {fileID: 5039708632937066895}
   CamHolder: {fileID: 1585304037955141592}
   OriginalFOV: 0
-  CameraRotationAmoutHorizontal: 6
+  CameraRotationAmoutHorizontal: 2
   CameraRotationAmoutVertical: 6
   CameraFOVAmout: 63
   pncl: {fileID: 7261848506275192719}
