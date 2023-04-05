@@ -503,9 +503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2372376b0cef28f4987130d303aef9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0
   HorizontalInput: 0
   VerticalInput: 0
+  MoveSpeed: 0
   WalkSpeed: 7
   SprintSpeed: 14
   GroundDrag: 5
@@ -526,7 +526,7 @@ MonoBehaviour:
   CameraRotationAmoutVertical: 6
   CameraFOVAmout: 63
   pncl: {fileID: 7261848506275192719}
-  SwingingSpeed: 20
+  SwingingSpeed: 16
   IsSwinging: 0
   rb: {fileID: 0}
   cam: {fileID: 8222060022045134100}

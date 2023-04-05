@@ -130,13 +130,14 @@ public class PlayerNetworkMovement : NetworkBehaviour
     void MovePlayer()
     {
         Vector3 MoveDir = transform.forward * VerticalInput + transform.right * HorizontalInput;
-        if (IsGrounded)
-        {
+        
+         if (IsGrounded)
+            {
         rb.AddForce(MoveDir.normalized * MoveSpeed * 10f, ForceMode.Force);
-        }
+         }
         else
         {
-            rb.AddForce(MoveDir.normalized * MoveSpeed * 10f * AirMultiplier, ForceMode.Force);
+            rb.AddForce(MoveDir * MoveSpeed * 10f * AirMultiplier, ForceMode.Force);
         }
     }
 
@@ -150,9 +151,9 @@ public class PlayerNetworkMovement : NetworkBehaviour
             Vector3 LimitedVel = CurVel.normalized* MoveSpeed;
             rb.velocity = new Vector3(LimitedVel.x, rb.velocity.y, LimitedVel.z);
         }
-        if(CurVelY.magnitude > 20)
+        if(CurVelY.magnitude > SwingingSpeed)
         {
-            Vector3 LimitedVelY = CurVelY.normalized * 20;
+            Vector3 LimitedVelY = CurVelY.normalized * SwingingSpeed;
             rb.velocity = new Vector3(rb.velocity.x, LimitedVelY.y, rb.velocity.z);
         }
     }
