@@ -25,6 +25,8 @@ public class M1911GunScript : NetworkBehaviour
         ShootAgainTime = true;
         muzzleflash.Stop();
         BulletsLeft = MagazineSize;
+        if (IsLocalPlayer) return;
+        text.enabled = false;
     }
 
     // Update is called once per frame

@@ -16,26 +16,29 @@ public class PlayerHealthScript : NetworkBehaviour
     void Start()
     {
         Health = MaxHealth;
-        textHealth.text = Health.ToString();
+        textHealth.text = textHealth.ToString();
+        if (IsLocalPlayer) return;
+        textHealth.enabled= false;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        textHealth.text = Health.ToString();
     }
 
     public void HealthUpdate(int Damage)
     {
         
-        textHealth.text = Health.ToString();
         if (Health < 0)
         {
             
             text.enabled = true;
         }
         Health -= Damage;
-
+        
+        
 
     }
 }
