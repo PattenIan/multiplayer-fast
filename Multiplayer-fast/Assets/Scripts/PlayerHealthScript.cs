@@ -10,11 +10,13 @@ public class PlayerHealthScript : NetworkBehaviour
 
     public int Health;
     private int MaxHealth = 100;
-    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI textHealth;
     // Start is called before the first frame update
     void Start()
     {
         Health = MaxHealth;
+        textHealth.text = Health.ToString();
     }
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class PlayerHealthScript : NetworkBehaviour
     public void HealthUpdate(int Damage)
     {
         
-
+        textHealth.text = Health.ToString();
         if (Health < 0)
         {
             

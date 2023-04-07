@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Unity.Netcode;
+using TMPro;
 
 public class M1911GunScript : NetworkBehaviour
 {
@@ -16,6 +17,7 @@ public class M1911GunScript : NetworkBehaviour
     [SerializeField] private int BulletsLeft;
     [SerializeField] private float ReloadCD;
     [SerializeField] private float ReloadCDTimer;
+    [SerializeField] private TextMeshProUGUI text;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,7 @@ public class M1911GunScript : NetworkBehaviour
         {
             Invoke(nameof(Reload), ReloadCD);
         }
+            text.text = MagazineSize + "/" + BulletsLeft;
     }
 
             Vector3 Hitpoint;
@@ -66,6 +69,7 @@ public class M1911GunScript : NetworkBehaviour
     void Reload()
     {
         BulletsLeft = MagazineSize;
+        
     }
 
     
