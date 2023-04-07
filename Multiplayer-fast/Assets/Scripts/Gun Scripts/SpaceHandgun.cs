@@ -48,7 +48,12 @@ public class SpaceHandgun : NetworkBehaviour
 
             if (EnemyHit != this.gameObject)
             {
+                if(EnemyHit.GetComponent<PlayerHealthScript>())
                 EnemyHit.GetComponent<PlayerHealthScript>().HealthUpdate(15);
+                else
+                {
+                    return;
+                }
             }
 
         }

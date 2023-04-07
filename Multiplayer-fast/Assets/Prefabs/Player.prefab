@@ -115,6 +115,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   muzzleflash: {fileID: 5673320245454492254}
+  MagazineSize: 10
+  BulletsLeft: 0
+  ReloadCD: 2
+  ReloadCDTimer: 0
 --- !u!114 &6223522261194337199
 MonoBehaviour:
   m_ObjectHideFlags: 0

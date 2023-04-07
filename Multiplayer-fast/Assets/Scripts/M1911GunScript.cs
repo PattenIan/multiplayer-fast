@@ -10,26 +10,38 @@ public class M1911GunScript : NetworkBehaviour
     [SerializeField] private LayerMask EnemyLayer;
     bool ShootAgainTime;
     [SerializeField] ParticleSystem muzzleflash;
+
+    [Header("Magazine")]
+    [SerializeField] private int MagazineSize;
+    [SerializeField] private int BulletsLeft;
+    [SerializeField] private float ReloadCD;
+    [SerializeField] private float ReloadCDTimer;
     // Start is called before the first frame update
     void Start()
     {
         gunAnimator = gameObject.GetComponentInChildren<Animator>();
         ShootAgainTime = true;
         muzzleflash.Stop();
+        BulletsLeft = MagazineSize;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!IsOwner) { return; }
-        if(Input.GetMouseButtonDown(0) && ShootAgainTime && !PauseMenu.gameIsPaused)
+        if(Input.GetMouseButtonDown(0) && ShootAgainTime && !PauseMenu.gameIsPaused && BulletsLeft>0)
         {
+            BulletsLeft -= 1;
             Shoot();
             ShootAgainTime = false;
             muzzleflash.Play();
             
             gunAnimator.SetBool("isShooting", true);
             Invoke(nameof(ResetShot), 0.75f);
+        }
+        if(BulletsLeft<= 0 || Input.GetKeyDown(KeyCode.R))
+        {
+            Invoke(nameof(Reload), ReloadCD);
         }
     }
 
@@ -49,6 +61,11 @@ public class M1911GunScript : NetworkBehaviour
 
         }
 
+    }
+
+    void Reload()
+    {
+        BulletsLeft = MagazineSize;
     }
 
     

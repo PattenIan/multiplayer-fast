@@ -186,7 +186,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
         velocityToSet = CalculateJumpVelocity(transform.position, targetPos, TrajectoryHeight);
         Invoke(nameof(SetVelocity), 0.1f);
 
-        Invoke(nameof(resetRestriction), 3f);
+        Invoke(nameof(resetRestriction), .3f);
     }
 
     Vector3 velocityToSet;
