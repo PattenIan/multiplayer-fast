@@ -37,8 +37,8 @@ public class PlayerHealthScript : NetworkBehaviour
             text.enabled = true;
         }
         Health -= Damage;
-        
-        
+        textHealth.text = Health.ToString();
+
 
     }
 }

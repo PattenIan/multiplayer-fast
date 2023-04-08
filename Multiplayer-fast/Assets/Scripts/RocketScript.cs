@@ -13,7 +13,7 @@ public class RocketScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,7 +24,9 @@ public class RocketScript : MonoBehaviour
             {
                 var rb = obj.GetComponent<Rigidbody>();
                 if (rb == null) continue;
-                rb.AddExplosionForce(BlastForce, transform.position, BlastRadius, RocketLength ,ForceMode.Impulse);
+            Vector3 DirToBombFromTarget = (rb.gameObject.transform.position - transform.position).normalized;
+            rb.gameObject.GetComponent<PlayerNetworkMovement>().ExplosionDirection(DirToBombFromTarget);
+            
             }
         Destroy(gameObject);
         

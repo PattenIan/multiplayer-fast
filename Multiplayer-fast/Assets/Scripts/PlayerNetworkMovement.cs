@@ -257,4 +257,11 @@ public class PlayerNetworkMovement : NetworkBehaviour
 
         return velocityXZ + velocityY;
     }
+
+    public void ExplosionDirection(Vector3 DirFromExplosion)
+    {
+
+        Debug.Log("HEJ");
+        rb.AddForce(DirFromExplosion * 50f, ForceMode.Impulse);
+    }
 }
