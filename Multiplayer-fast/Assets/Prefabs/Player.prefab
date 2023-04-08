@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 478322285552713050}
   - component: {fileID: 3268020311268341843}
   - component: {fileID: 8671740079710733911}
+  - component: {fileID: 7835623094191226353}
   m_Layer: 6
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -139,8 +140,6 @@ MonoBehaviour:
   Blastable:
     serializedVersion: 2
     m_Bits: 64
-  BlastForce: 1700
-  pm: {fileID: 4540991749080626507}
 --- !u!114 &478322285552713050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +283,106 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   muzzleflash: {fileID: 5673320245454492254}
+--- !u!114 &7835623094191226353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894368387800108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b734291cf918f45b19a94385102853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spread: 0
+  TimeBetweenShots: 0
+  BulletsPerTap: 0
+  CamShakeAmout: 0
+  CamShakeTime: 0
+  damage: 0
+  fireRate: 0
+  magSize: 0
+  currentAmmo: 0
+  ReloadTime: 0
+  Reloading: 0
+  readyToShoot: 0
+  IsAllowedToHold: 0
+  Shooting: 0
+  FirstShot: 0
+  bulletsShots: 0
+  SpreadS: 0.06
+  CamShakeAmoutS: 0
+  CamShakeTimeS: 0
+  BulletsPerTapS: 6
+  TimeBetweenShotsS: 0
+  damageS: 20
+  fireRateS: 1
+  magSizeS: 24
+  currentAmmoS: 0
+  ReloadTimeS: 2
+  ReloadingS: 0
+  SpreadAR: 0.02
+  CamShakeAmoutAR: 0
+  CamShakeTimeAR: 0
+  BulletsPerTapAR: 1
+  TimeBetweenShotsAR: 0
+  damageAR: 20
+  fireRateAR: 0.15
+  magSizeAR: 30
+  currentAmmoAR: 0
+  ReloadTimeAR: 1.7
+  ReloadingAR: 0
+  SpreadP: 0
+  CamShakeAmoutP: 0
+  CamShakeTimeP: 0
+  BulletsPerTapP: 1
+  TimeBetweenShotsP: 0
+  damageP: 10
+  fireRateP: 0.22
+  magSizeP: 13
+  currentAmmoP: 0
+  ReloadTimeP: 0.75
+  ReloadingP: 0
+  SpreadRL: 0
+  CamShakeAmoutRL: 0
+  CamShakeTimeRL: 0
+  BulletsPerTapRL: 0
+  TimeBetweenShotsRL: 0
+  damageRL: 0
+  fireRateRL: 0
+  magSizeRL: 0
+  currentAmmoRL: 0
+  ReloadTimeRL: 0
+  ReloadingRL: 0
+  SpreadSG: 0.02
+  CamShakeAmoutSG: 0
+  CamShakeTimeSG: 0
+  BulletsPerTapSG: 1
+  TimeBetweenShotsSG: 0
+  damageSG: 20
+  fireRateSG: 0.05
+  magSizeSG: 30
+  currentAmmoSG: 0
+  ReloadTimeSG: 1
+  ReloadingSG: 0
+  SpreadRG: 0
+  CamShakeAmoutRG: 0
+  CamShakeTimeRG: 0
+  BulletsPerTapRG: 0
+  TimeBetweenShotsRG: 0
+  damageRG: 0
+  fireRateRG: 0
+  magSizeRG: 0
+  currentAmmoRG: 0
+  ReloadTimeRG: 0
+  ReloadingRG: 0
+  gun: 2
+  WhatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 64
+  RecoilStabilizationCD: 0
+  RecoilStabilizationCDTimer: 0
 --- !u!1 &255866068084728454
 GameObject:
   m_ObjectHideFlags: 0

@@ -9585,6 +9585,7 @@ GameObject:
   - component: {fileID: 908741493}
   - component: {fileID: 908741492}
   - component: {fileID: 908741491}
+  - component: {fileID: 908741497}
   m_Layer: 7
   m_Name: Cube (10)
   m_TagString: Untagged
@@ -9915,6 +9916,88 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &908741497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908741490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b734291cf918f45b19a94385102853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spread: 0
+  CamShakeAmout: 0
+  CamShakeTime: 0
+  damage: 0
+  fireRate: 0
+  magSize: 0
+  currentAmmo: 0
+  ReloadTime: 0
+  Reloading: 0
+  readyToShoot: 0
+  IsAllowedToHold: 0
+  Shooting: 0
+  SpreadS: 0
+  CamShakeAmoutS: 0
+  CamShakeTimeS: 0
+  damageS: 0
+  fireRateS: 0
+  magSizeS: 0
+  currentAmmoS: 0
+  ReloadTimeS: 0
+  ReloadingS: 0
+  SpreadAR: 0
+  CamShakeAmoutAR: 0
+  CamShakeTimeAR: 0
+  damageAR: 0
+  fireRateAR: 0
+  magSizeAR: 0
+  currentAmmoAR: 0
+  ReloadTimeAR: 0
+  ReloadingAR: 0
+  SpreadP: 0
+  CamShakeAmoutP: 0
+  CamShakeTimeP: 0
+  damageP: 0
+  fireRateP: 0
+  magSizeP: 0
+  currentAmmoP: 0
+  ReloadTimeP: 0
+  ReloadingP: 0
+  SpreadRL: 0
+  CamShakeAmoutRL: 0
+  CamShakeTimeRL: 0
+  damageRL: 0
+  fireRateRL: 0
+  magSizeRL: 0
+  currentAmmoRL: 0
+  ReloadTimeRL: 0
+  ReloadingRL: 0
+  SpreadSG: 0
+  CamShakeAmoutSG: 0
+  CamShakeTimeSG: 0
+  damageSG: 0
+  fireRateSG: 0
+  magSizeSG: 0
+  currentAmmoSG: 0
+  ReloadTimeSG: 0
+  ReloadingSG: 0
+  SpreadRG: 0
+  CamShakeAmoutRG: 0
+  CamShakeTimeRG: 0
+  damageRG: 0
+  fireRateRG: 0
+  magSizeRG: 0
+  currentAmmoRG: 0
+  ReloadTimeRG: 0
+  ReloadingRG: 0
+  gun: 0
+  WhatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!43 &914036438
 Mesh:
   m_ObjectHideFlags: 0
@@ -12375,7 +12458,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27604
+  m_Name: pb_Mesh27608
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
