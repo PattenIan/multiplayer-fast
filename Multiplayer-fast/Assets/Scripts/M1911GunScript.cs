@@ -47,7 +47,7 @@ public class M1911GunScript : NetworkBehaviour
         {
             Invoke(nameof(Reload), ReloadCD);
         }
-            text.text = MagazineSize + "/" + BulletsLeft;
+            text.text = BulletsLeft + "/" + MagazineSize;
     }
 
             Vector3 Hitpoint;

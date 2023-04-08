@@ -9,7 +9,10 @@ public class RocketLauncherScript : NetworkBehaviour
     [SerializeField] private GameObject RocketPrefab;
     [SerializeField] private float RocketSpeed;
     [SerializeField] private Transform FirePoint;
-
+    [SerializeField] private float BlastRadius;
+    [SerializeField] private LayerMask Blastable;
+    
+    
     
     // Start is called before the first frame update
     void Start()
@@ -26,11 +29,35 @@ public class RocketLauncherScript : NetworkBehaviour
             Shoot();
         }
     }
-
+    Vector3 hitPoint;
     void Shoot()
     {
-       var rocket = Instantiate(RocketPrefab, FirePoint.position, Quaternion.identity);
-       Rigidbody rb= rocket.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * RocketSpeed, ForceMode.Impulse);
+       if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity))
+        {
+            hitPoint= hit.point;
+            float Dist = Vector3.Distance(transform.position, hitPoint);
+            print(Dist);
+            Invoke(nameof(DelayedRocketImpact), Dist * 0.01f);
+        }
+
+    }
+
+    void DelayedRocketImpact()
+    {
+        Collider[] Players = Physics.OverlapSphere(hitPoint, BlastRadius, Blastable);
+
+        foreach (var obj in Players)
+        {
+            print(obj.name);
+
+            Vector3 DirToBombFromTarget = (transform.position - hitPoint).normalized;
+
+
+            var pmComp = obj.GetComponentInParent<PlayerNetworkMovement>();
+            
+            pmComp.GetComponent<PlayerNetworkMovement>().ExplosionDirection(DirToBombFromTarget);
+            
+
+        }
     }
 }

@@ -135,6 +135,12 @@ MonoBehaviour:
   RocketPrefab: {fileID: 8141004162872330958, guid: 9cd05e875cdccd043816e208e78e8577, type: 3}
   RocketSpeed: 15
   FirePoint: {fileID: 3896711751189693947}
+  BlastRadius: 8.45
+  Blastable:
+    serializedVersion: 2
+    m_Bits: 64
+  BlastForce: 1700
+  pm: {fileID: 4540991749080626507}
 --- !u!114 &478322285552713050
 MonoBehaviour:
   m_ObjectHideFlags: 0
