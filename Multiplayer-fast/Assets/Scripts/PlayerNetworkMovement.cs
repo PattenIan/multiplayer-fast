@@ -7,8 +7,8 @@ using System.Net.NetworkInformation;
 
 public class PlayerNetworkMovement : NetworkBehaviour
 {
-    [SerializeField, HideInInspector] private float HorizontalInput;
-    [SerializeField, HideInInspector] private float VerticalInput;
+    [SerializeField, HideInInspector] public float HorizontalInput;
+    [SerializeField, HideInInspector] public float VerticalInput;
 
     [Header("Movement")]
     [SerializeField] private float MoveSpeed;
@@ -42,7 +42,10 @@ public class PlayerNetworkMovement : NetworkBehaviour
     [Header("Swinging")]
     [SerializeField] private float SwingingSpeed;
     [SerializeField] public bool IsSwinging;
-    
+
+    [Header("Wall run")]
+    [SerializeField] private float WallRunSpeed;
+    [SerializeField] public bool IsWallrunning;
 
     [Header("Refrences")]
     [SerializeField] private Rigidbody rb;
@@ -53,6 +56,7 @@ public class PlayerNetworkMovement : NetworkBehaviour
     {
         Freeze,
         Walk,
+        Wallrunning,
         Sprint,
         Air,
         Swinging,
@@ -99,6 +103,11 @@ public class PlayerNetworkMovement : NetworkBehaviour
         {
             state = MovementState.Swinging;
             MoveSpeed = SwingingSpeed;
+        }
+        else if (IsWallrunning)
+        {
+            state= MovementState.Wallrunning;
+            MoveSpeed = WallRunSpeed;
         }
         else if(IsGrounded && Input.GetKey(KeyCode.LeftShift))
         {
