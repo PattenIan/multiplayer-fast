@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GunManager : MonoBehaviour
@@ -9,7 +10,9 @@ public class GunManager : MonoBehaviour
     [SerializeField, HideInInspector] private int BulletsPerTap;
     [SerializeField, HideInInspector] private float CamShakeAmout;
     [SerializeField, HideInInspector] private float CamShakeTime;
-    [SerializeField, HideInInspector] private int damage;
+    [SerializeField, HideInInspector] private int Sdamage;
+    [SerializeField, HideInInspector] private int Mdamage;
+    [SerializeField, HideInInspector] private int Ldamage;
     [SerializeField, HideInInspector] private float fireRate;
     [SerializeField, HideInInspector] private int magSize;
     [SerializeField, HideInInspector] private int currentAmmo;
@@ -21,17 +24,23 @@ public class GunManager : MonoBehaviour
     [SerializeField, HideInInspector] private bool FirstShot;
     [SerializeField, HideInInspector] private int bulletsShots;
     [SerializeField, HideInInspector] private bool CanHaveStabilRecoil;
-
-
+    [SerializeField, HideInInspector] private int ShortRange;
+    [SerializeField, HideInInspector] private int MediumRange;
+    [SerializeField, HideInInspector] private int LongRange;
     [Header("Shotgun")]
     [SerializeField] private float SpreadS;
     [SerializeField] private float CamShakeAmoutS;
     [SerializeField] private float CamShakeTimeS;
+    [Header("Damage")]
+    [SerializeField] private int SdamageS;
+    [SerializeField] private int MdamageS;
+    [SerializeField] private int LdamageS;
+    [SerializeField] private float fireRateS;
     [SerializeField] private int BulletsPerTapS;
     [SerializeField] private float TimeBetweenShotsS;
-    [Header("Damage")]
-    [SerializeField] private int damageS;
-    [SerializeField] private float fireRateS;
+    [SerializeField] private int ShortRangeS;
+    [SerializeField] private int MediumRangeS;
+    [SerializeField] private int LongRangeS;
     [Header("Magazine size")]
     [SerializeField] private int magSizeS;
     [SerializeField] private int currentAmmoS;
@@ -45,11 +54,16 @@ public class GunManager : MonoBehaviour
     [SerializeField] private float SpreadAR;
     [SerializeField] private float CamShakeAmoutAR;
     [SerializeField] private float CamShakeTimeAR;
+    [Header("Damage")]
+    [SerializeField] private int SdamageAR;
+    [SerializeField] private int MdamageAR;
+    [SerializeField] private int LdamageAR;
+    [SerializeField] private float fireRateAR;
     [SerializeField] private int BulletsPerTapAR;
     [SerializeField] private float TimeBetweenShotsAR;
-    [Header("Damage")]
-    [SerializeField] private int damageAR;
-    [SerializeField] private float fireRateAR;
+    [SerializeField] private int ShortRangeAR;
+    [SerializeField] private int MediumRangeAR;
+    [SerializeField] private int LongRangeAR;
     [Header("Magazine size")]
     [SerializeField] private int magSizeAR;
     [SerializeField] private int currentAmmoAR;
@@ -63,11 +77,16 @@ public class GunManager : MonoBehaviour
     [SerializeField] private float SpreadP;
     [SerializeField] private float CamShakeAmoutP;
     [SerializeField] private float CamShakeTimeP;
+    [Header("Damage")]
+    [SerializeField] private int SdamageP;
+    [SerializeField] private int MdamageP;
+    [SerializeField] private int LdamageP;
+    [SerializeField] private float fireRateP;
     [SerializeField] private int BulletsPerTapP;
     [SerializeField] private float TimeBetweenShotsP;
-    [Header("Damage")]
-    [SerializeField] private int damageP;
-    [SerializeField] private float fireRateP;
+    [SerializeField] private int ShortRangeP;
+    [SerializeField] private int MediumRangeP;
+    [SerializeField] private int LongRangeP;
     [Header("Magazine size")]
     [SerializeField] private int magSizeP;
     [SerializeField] private int currentAmmoP;
@@ -81,11 +100,16 @@ public class GunManager : MonoBehaviour
     [SerializeField] private float SpreadRL;
     [SerializeField] private float CamShakeAmoutRL;
     [SerializeField] private float CamShakeTimeRL;
+    [Header("Damage")]
+    [SerializeField] private int SdamageRL;
+    [SerializeField] private int MdamageRL;
+    [SerializeField] private int LdamageRL;
+    [SerializeField] private float fireRateRL;
     [SerializeField] private int BulletsPerTapRL;
     [SerializeField] private float TimeBetweenShotsRL;
-    [Header("Damage")]
-    [SerializeField] private int damageRL;
-    [SerializeField] private float fireRateRL;
+    [SerializeField] private int ShortRangeRL;
+    [SerializeField] private int MediumRangeRL;
+    [SerializeField] private int LongRangeRL;
     [Header("Magazine size")]
     [SerializeField] private int magSizeRL;
     [SerializeField] private int currentAmmoRL;
@@ -99,11 +123,16 @@ public class GunManager : MonoBehaviour
     [SerializeField] private float SpreadSG;
     [SerializeField] private float CamShakeAmoutSG;
     [SerializeField] private float CamShakeTimeSG;
+    [Header("Damage")]
+    [SerializeField] private int SdamageSG;
+    [SerializeField] private int MdamageSG;
+    [SerializeField] private int LdamageSG;
+    [SerializeField] private float fireRateSG;
     [SerializeField] private int BulletsPerTapSG;
     [SerializeField] private float TimeBetweenShotsSG;
-    [Header("Damage")]
-    [SerializeField] private int damageSG;
-    [SerializeField] private float fireRateSG;
+    [SerializeField] private int ShortRangeSG;
+    [SerializeField] private int MediumRangeSG;
+    [SerializeField] private int LongRangeSG;
     [Header("Magazine size")]
     [SerializeField] private int magSizeSG;
     [SerializeField] private int currentAmmoSG;
@@ -117,11 +146,16 @@ public class GunManager : MonoBehaviour
     [SerializeField] private float SpreadRG;
     [SerializeField] private float CamShakeAmoutRG;
     [SerializeField] private float CamShakeTimeRG;
+    [Header("Damage")]
+    [SerializeField] private int SdamageRG;
+    [SerializeField] private int MdamageRG;
+    [SerializeField] private int LdamageRG;
+    [SerializeField] private float fireRateRG;
     [SerializeField] private int BulletsPerTapRG;
     [SerializeField] private float TimeBetweenShotsRG;
-    [Header("Damage")]
-    [SerializeField] private int damageRG;
-    [SerializeField] private float fireRateRG;
+    [SerializeField] private int ShortRangeRG;
+    [SerializeField] private int MediumRangeRG;
+    [SerializeField] private int LongRangeRG;
     [Header("Magazine size")]
     [SerializeField] private int magSizeRG;
     [SerializeField] private int currentAmmoRG;
@@ -137,6 +171,7 @@ public class GunManager : MonoBehaviour
     [SerializeField] private float RecoilStabilizationCD;
     [SerializeField,HideInInspector] private float RecoilStabilizationCDTimer;
     [SerializeField] private GameObject BulletHole;
+    [SerializeField] private TextMeshProUGUI BulletText;
     
 
     public enum ActiveGun
@@ -170,6 +205,7 @@ public class GunManager : MonoBehaviour
             RecoilStabilizationCDTimer-= Time.deltaTime;
             FirstShot = false;
         }
+        BulletText.text = currentAmmo + " / " + magSize;
     }
 
     void MyInput()
@@ -201,13 +237,19 @@ public class GunManager : MonoBehaviour
             spread = SpreadP;
             CamShakeAmout = CamShakeAmoutP;
             CamShakeTime = CamShakeTimeP;
-            damage = damageP;
+            Sdamage = SdamageP;
+            Mdamage= MdamageP;
+            Ldamage= LdamageP;
             fireRate= fireRateP;
             magSize=magSizeP;
             ReloadTime=ReloadTimeP;
             BulletsPerTap= BulletsPerTapP;
             IsAllowedToHold = false;
             CanHaveStabilRecoil = true;
+            LongRange = LongRangeP;
+            MediumRange= MediumRangeP;
+            ShortRange= ShortRangeP;
+            currentAmmo = magSize;
 
         } else if(Input.GetKeyDown(KeyCode.Alpha2) && gun != ActiveGun.AssultRifle)
         {
@@ -215,13 +257,19 @@ public class GunManager : MonoBehaviour
             spread = SpreadAR;
             CamShakeAmout = CamShakeAmoutAR;
             CamShakeTime = CamShakeTimeAR;
-            damage = damageAR;
+            Sdamage = SdamageAR;
+            Mdamage= MdamageAR;
+            Ldamage= LdamageAR;
             fireRate = fireRateAR;
             magSize = magSizeAR;
             ReloadTime = ReloadTimeAR;
             BulletsPerTap= BulletsPerTapAR;
             IsAllowedToHold = true;
             CanHaveStabilRecoil = true;
+            ShortRange=ShortRangeAR;
+            MediumRange= MediumRangeAR;
+            LongRange= LongRangeAR;
+            currentAmmo = magSize;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && gun != ActiveGun.Shotgun)
         {
@@ -229,13 +277,19 @@ public class GunManager : MonoBehaviour
             spread = SpreadS;
             CamShakeAmout = CamShakeAmoutS;
             CamShakeTime = CamShakeTimeS;
-            damage = damageS;
+            Sdamage = SdamageS;
+            Mdamage= MdamageS;
+            Ldamage= LdamageS;
             fireRate = fireRateS;
             magSize = magSizeS;
             ReloadTime = ReloadTimeS;
             BulletsPerTap = BulletsPerTapS;
             IsAllowedToHold = false;
             CanHaveStabilRecoil = false;
+            ShortRange = ShortRangeS;
+            MediumRange= MediumRangeS;
+            LongRange= LongRangeS;
+            currentAmmo = magSize;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4) && gun != ActiveGun.SubmachineGun)
         {
@@ -243,13 +297,19 @@ public class GunManager : MonoBehaviour
             spread = SpreadSG;
             CamShakeAmout = CamShakeAmoutSG;
             CamShakeTime = CamShakeTimeSG;
-            damage = damageSG;
+            Sdamage = SdamageSG;
+            Mdamage= MdamageSG;
+            Ldamage= LdamageSG;
             fireRate = fireRateSG;
             magSize = magSizeSG;
             ReloadTime = ReloadTimeSG;
             BulletsPerTap = BulletsPerTapSG;
             IsAllowedToHold = true;
             CanHaveStabilRecoil = false;
+            ShortRange= ShortRangeSG;
+            MediumRange= MediumRangeSG;
+            LongRange=LongRangeSG;
+            currentAmmo = magSize;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5) && gun != ActiveGun.RocketLauncher)
         {
@@ -257,13 +317,19 @@ public class GunManager : MonoBehaviour
             spread = SpreadRL;
             CamShakeAmout = CamShakeAmoutRL;
             CamShakeTime = CamShakeTimeRL;
-            damage = damageRL;
+            Sdamage = SdamageRL;
+            Mdamage = MdamageRL;
+            Ldamage = LdamageRL;
             fireRate = fireRateRL;
             magSize = magSizeRL;
             ReloadTime = ReloadTimeRL;
             BulletsPerTap = BulletsPerTapRL;
             IsAllowedToHold = false;
             CanHaveStabilRecoil = true;
+            ShortRange= ShortRangeRL;
+            MediumRange= MediumRangeRL;
+            LongRange= LongRangeRL;
+            currentAmmo = magSize;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6) && gun != ActiveGun.RailGun)
         {
@@ -271,13 +337,19 @@ public class GunManager : MonoBehaviour
             spread = SpreadRG;
             CamShakeAmout = CamShakeAmoutRG;
             CamShakeTime = CamShakeTimeRG;
-            damage = damageRG;
+            Sdamage = SdamageRG;
+            Mdamage = MdamageRG;
+            Ldamage = LdamageRG;
             fireRate = fireRateRG;
             magSize = magSizeRG;
             ReloadTime = ReloadTimeRG;
             BulletsPerTap = BulletsPerTapRG;
             IsAllowedToHold = false;
             CanHaveStabilRecoil = true;
+            ShortRange= ShortRangeRG;
+            MediumRange= MediumRangeRG;
+            LongRange= LongRangeRG;
+            currentAmmo = magSize;
         }
 
 
@@ -287,9 +359,8 @@ public class GunManager : MonoBehaviour
     void Shoot()
     {
         readyToShoot = false;
-        float x = Random.Range(-spread,spread);
-        float y = Random.Range(-spread,spread);
-        float z = Random.Range(-spread, spread);
+        
+        Vector3 allAxisSpread = Random.insideUnitSphere * spread;
         if (FirstShot && CanHaveStabilRecoil) 
         {
             direction = transform.forward;
@@ -297,12 +368,23 @@ public class GunManager : MonoBehaviour
         }
         else
         {
-         direction = transform.forward + new Vector3(x,y,z);
+         direction = transform.forward + allAxisSpread;
         }
-
+        
         if(Physics.Raycast(transform.position,direction,out RaycastHit hitInfo, Mathf.Infinity, WhatIsEnemy)) 
         {
-           //hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(damage);
+            float DistToTarget = Vector3.Distance(transform.position, hitInfo.point);
+            if (DistToTarget < ShortRange)
+            {
+           //hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Sdamage);
+
+            } else if(DistToTarget>ShortRange && DistToTarget < MediumRange)
+            {
+           //hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Mdamage);
+            } else if (DistToTarget > MediumRange)
+            {
+                //hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Ldamage);
+            }
         }
 
 

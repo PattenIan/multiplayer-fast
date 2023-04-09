@@ -11,11 +11,7 @@ GameObject:
   - component: {fileID: 5039708632937066895}
   - component: {fileID: 8222060022045134100}
   - component: {fileID: 7261848506275192719}
-  - component: {fileID: 1627625791545798853}
-  - component: {fileID: 6223522261194337199}
-  - component: {fileID: 478322285552713050}
   - component: {fileID: 3268020311268341843}
-  - component: {fileID: 8671740079710733911}
   - component: {fileID: 7835623094191226353}
   m_Layer: 6
   m_Name: PlayerCam
@@ -99,74 +95,6 @@ MonoBehaviour:
   Sens: 181
   PlayerRef: {fileID: 2632807943268169984}
   MouseY: 0
---- !u!114 &1627625791545798853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5894368387800108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 633b17131d21d0444931a28162cb43c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunAnimator: {fileID: 0}
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  muzzleflash: {fileID: 5673320245454492254}
-  MagazineSize: 10
-  BulletsLeft: 0
-  ReloadCD: 2
-  ReloadCDTimer: 0
-  text: {fileID: 4322757425460141083}
---- !u!114 &6223522261194337199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5894368387800108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a1502333332cd45959ac33887c56f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RocketPrefab: {fileID: 8141004162872330958, guid: 9cd05e875cdccd043816e208e78e8577, type: 3}
-  RocketSpeed: 15
-  FirePoint: {fileID: 3896711751189693947}
-  BlastRadius: 8.45
-  Blastable:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &478322285552713050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5894368387800108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717da93d95001a24685eeb9793f46b98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LR: {fileID: 3268020311268341843}
-  minLineSize: 0.006
-  maxLineSize: 0.3
-  lineSize: 0
-  ShootPoint: {fileID: 3896711751189693947}
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  ShotRadius: 1
-  cam: {fileID: 8222060022045134100}
-  Shake: 0
-  DecreaseFactor: 2.17
-  shakeAmount: 0.22
-  CanShoot: 1
-  ReloadCooldown: 1
 --- !u!120 &3268020311268341843
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -266,23 +194,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &8671740079710733911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5894368387800108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 046a206fc3fe72843a8775b631790b2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunAnimator: {fileID: 9217649896675508054}
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  muzzleflash: {fileID: 5673320245454492254}
 --- !u!114 &7835623094191226353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +211,9 @@ MonoBehaviour:
   BulletsPerTap: 0
   CamShakeAmout: 0
   CamShakeTime: 0
-  damage: 0
+  Sdamage: 0
+  Mdamage: 0
+  Ldamage: 0
   fireRate: 0
   magSize: 0
   currentAmmo: 0
@@ -312,13 +225,21 @@ MonoBehaviour:
   FirstShot: 0
   bulletsShots: 0
   CanHaveStabilRecoil: 0
+  ShortRange: 0
+  MediumRange: 0
+  LongRange: 0
   SpreadS: 0.07
   CamShakeAmoutS: 0
   CamShakeTimeS: 0
+  SdamageS: 0
+  MdamageS: 0
+  LdamageS: 0
+  fireRateS: 1
   BulletsPerTapS: 6
   TimeBetweenShotsS: 0
-  damageS: 20
-  fireRateS: 1
+  ShortRangeS: 0
+  MediumRangeS: 0
+  LongRangeS: 0
   magSizeS: 24
   currentAmmoS: 0
   ReloadTimeS: 2
@@ -326,10 +247,15 @@ MonoBehaviour:
   SpreadAR: 0.017
   CamShakeAmoutAR: 0
   CamShakeTimeAR: 0
+  SdamageAR: 0
+  MdamageAR: 0
+  LdamageAR: 0
+  fireRateAR: 0.15
   BulletsPerTapAR: 1
   TimeBetweenShotsAR: 0
-  damageAR: 20
-  fireRateAR: 0.15
+  ShortRangeAR: 0
+  MediumRangeAR: 0
+  LongRangeAR: 0
   magSizeAR: 30
   currentAmmoAR: 0
   ReloadTimeAR: 1.7
@@ -337,10 +263,15 @@ MonoBehaviour:
   SpreadP: 0
   CamShakeAmoutP: 0
   CamShakeTimeP: 0
+  SdamageP: 0
+  MdamageP: 0
+  LdamageP: 0
+  fireRateP: 0.22
   BulletsPerTapP: 1
   TimeBetweenShotsP: 0
-  damageP: 10
-  fireRateP: 0.22
+  ShortRangeP: 0
+  MediumRangeP: 0
+  LongRangeP: 0
   magSizeP: 13
   currentAmmoP: 0
   ReloadTimeP: 0.75
@@ -348,10 +279,15 @@ MonoBehaviour:
   SpreadRL: 0
   CamShakeAmoutRL: 0
   CamShakeTimeRL: 0
+  SdamageRL: 0
+  MdamageRL: 0
+  LdamageRL: 0
+  fireRateRL: 0
   BulletsPerTapRL: 0
   TimeBetweenShotsRL: 0
-  damageRL: 0
-  fireRateRL: 0
+  ShortRangeRL: 0
+  MediumRangeRL: 0
+  LongRangeRL: 0
   magSizeRL: 0
   currentAmmoRL: 0
   ReloadTimeRL: 0
@@ -359,10 +295,15 @@ MonoBehaviour:
   SpreadSG: 0.04
   CamShakeAmoutSG: 0
   CamShakeTimeSG: 0
+  SdamageSG: 0
+  MdamageSG: 0
+  LdamageSG: 0
+  fireRateSG: 0.05
   BulletsPerTapSG: 1
   TimeBetweenShotsSG: 0
-  damageSG: 20
-  fireRateSG: 0.05
+  ShortRangeSG: 0
+  MediumRangeSG: 0
+  LongRangeSG: 0
   magSizeSG: 30
   currentAmmoSG: 0
   ReloadTimeSG: 1
@@ -370,10 +311,15 @@ MonoBehaviour:
   SpreadRG: 0
   CamShakeAmoutRG: 0
   CamShakeTimeRG: 0
+  SdamageRG: 0
+  MdamageRG: 0
+  LdamageRG: 0
+  fireRateRG: 0
   BulletsPerTapRG: 0
   TimeBetweenShotsRG: 0
-  damageRG: 0
-  fireRateRG: 0
+  ShortRangeRG: 0
+  MediumRangeRG: 0
+  LongRangeRG: 0
   magSizeRG: 0
   currentAmmoRG: 0
   ReloadTimeRG: 0
@@ -385,6 +331,7 @@ MonoBehaviour:
   RecoilStabilizationCD: 0.68
   RecoilStabilizationCDTimer: 0
   BulletHole: {fileID: 3483666755559835765, guid: 5872be37df0f9444191512d3248a6c70, type: 3}
+  BulletText: {fileID: 4322757425460141083}
 --- !u!1 &255866068084728454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,11 +1636,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be1ab9dc81f15514298320613afbaf04, type: 3}
---- !u!198 &5673320245454492254 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3361512107285887540, guid: be1ab9dc81f15514298320613afbaf04, type: 3}
-  m_PrefabInstance: {fileID: 6925924657672218730}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8411416072879729778
 PrefabInstance:
   m_ObjectHideFlags: 0
