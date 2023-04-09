@@ -377,14 +377,14 @@ public class GunManager : MonoBehaviour
             float DistToTarget = Vector3.Distance(transform.position, hitInfo.point);
             if (DistToTarget < ShortRange)
             {
-           //hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Sdamage);
+           hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Sdamage);
 
             } else if(DistToTarget>ShortRange && DistToTarget < MediumRange)
             {
-           //hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Mdamage);
+            hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Mdamage);
             } else if (DistToTarget > MediumRange)
             {
-                //hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Ldamage);
+                hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Ldamage);
             }
         }
 
