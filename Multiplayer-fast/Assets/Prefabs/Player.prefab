@@ -311,7 +311,8 @@ MonoBehaviour:
   Shooting: 0
   FirstShot: 0
   bulletsShots: 0
-  SpreadS: 0.06
+  CanHaveStabilRecoil: 0
+  SpreadS: 0.07
   CamShakeAmoutS: 0
   CamShakeTimeS: 0
   BulletsPerTapS: 6
@@ -322,7 +323,7 @@ MonoBehaviour:
   currentAmmoS: 0
   ReloadTimeS: 2
   ReloadingS: 0
-  SpreadAR: 0.02
+  SpreadAR: 0.017
   CamShakeAmoutAR: 0
   CamShakeTimeAR: 0
   BulletsPerTapAR: 1
@@ -355,7 +356,7 @@ MonoBehaviour:
   currentAmmoRL: 0
   ReloadTimeRL: 0
   ReloadingRL: 0
-  SpreadSG: 0.02
+  SpreadSG: 0.04
   CamShakeAmoutSG: 0
   CamShakeTimeSG: 0
   BulletsPerTapSG: 1
@@ -380,9 +381,10 @@ MonoBehaviour:
   gun: 2
   WhatIsEnemy:
     serializedVersion: 2
-    m_Bits: 64
-  RecoilStabilizationCD: 0
+    m_Bits: 704
+  RecoilStabilizationCD: 0.68
   RecoilStabilizationCDTimer: 0
+  BulletHole: {fileID: 3483666755559835765, guid: 5872be37df0f9444191512d3248a6c70, type: 3}
 --- !u!1 &255866068084728454
 GameObject:
   m_ObjectHideFlags: 0

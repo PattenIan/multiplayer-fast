@@ -9929,6 +9929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spread: 0
+  TimeBetweenShots: 0
+  BulletsPerTap: 0
   CamShakeAmout: 0
   CamShakeTime: 0
   damage: 0
@@ -9940,9 +9942,14 @@ MonoBehaviour:
   readyToShoot: 0
   IsAllowedToHold: 0
   Shooting: 0
+  FirstShot: 0
+  bulletsShots: 0
+  CanHaveStabilRecoil: 0
   SpreadS: 0
   CamShakeAmoutS: 0
   CamShakeTimeS: 0
+  BulletsPerTapS: 0
+  TimeBetweenShotsS: 0
   damageS: 0
   fireRateS: 0
   magSizeS: 0
@@ -9952,6 +9959,8 @@ MonoBehaviour:
   SpreadAR: 0
   CamShakeAmoutAR: 0
   CamShakeTimeAR: 0
+  BulletsPerTapAR: 0
+  TimeBetweenShotsAR: 0
   damageAR: 0
   fireRateAR: 0
   magSizeAR: 0
@@ -9961,6 +9970,8 @@ MonoBehaviour:
   SpreadP: 0
   CamShakeAmoutP: 0
   CamShakeTimeP: 0
+  BulletsPerTapP: 0
+  TimeBetweenShotsP: 0
   damageP: 0
   fireRateP: 0
   magSizeP: 0
@@ -9970,6 +9981,8 @@ MonoBehaviour:
   SpreadRL: 0
   CamShakeAmoutRL: 0
   CamShakeTimeRL: 0
+  BulletsPerTapRL: 0
+  TimeBetweenShotsRL: 0
   damageRL: 0
   fireRateRL: 0
   magSizeRL: 0
@@ -9979,6 +9992,8 @@ MonoBehaviour:
   SpreadSG: 0
   CamShakeAmoutSG: 0
   CamShakeTimeSG: 0
+  BulletsPerTapSG: 0
+  TimeBetweenShotsSG: 0
   damageSG: 0
   fireRateSG: 0
   magSizeSG: 0
@@ -9988,6 +10003,8 @@ MonoBehaviour:
   SpreadRG: 0
   CamShakeAmoutRG: 0
   CamShakeTimeRG: 0
+  BulletsPerTapRG: 0
+  TimeBetweenShotsRG: 0
   damageRG: 0
   fireRateRG: 0
   magSizeRG: 0
@@ -9998,6 +10015,9 @@ MonoBehaviour:
   WhatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  RecoilStabilizationCD: 0
+  RecoilStabilizationCDTimer: 0
+  BulletHole: {fileID: 0}
 --- !u!43 &914036438
 Mesh:
   m_ObjectHideFlags: 0

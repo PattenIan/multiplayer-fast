@@ -20,6 +20,7 @@ public class GunManager : MonoBehaviour
     [SerializeField, HideInInspector] private bool Shooting;
     [SerializeField, HideInInspector] private bool FirstShot;
     [SerializeField, HideInInspector] private int bulletsShots;
+    [SerializeField, HideInInspector] private bool CanHaveStabilRecoil;
 
 
     [Header("Shotgun")]
@@ -135,6 +136,7 @@ public class GunManager : MonoBehaviour
     [SerializeField] private LayerMask WhatIsEnemy;
     [SerializeField] private float RecoilStabilizationCD;
     [SerializeField,HideInInspector] private float RecoilStabilizationCDTimer;
+    [SerializeField] private GameObject BulletHole;
     
 
     public enum ActiveGun
@@ -205,6 +207,7 @@ public class GunManager : MonoBehaviour
             ReloadTime=ReloadTimeP;
             BulletsPerTap= BulletsPerTapP;
             IsAllowedToHold = false;
+            CanHaveStabilRecoil = true;
 
         } else if(Input.GetKeyDown(KeyCode.Alpha2) && gun != ActiveGun.AssultRifle)
         {
@@ -218,6 +221,7 @@ public class GunManager : MonoBehaviour
             ReloadTime = ReloadTimeAR;
             BulletsPerTap= BulletsPerTapAR;
             IsAllowedToHold = true;
+            CanHaveStabilRecoil = true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && gun != ActiveGun.Shotgun)
         {
@@ -231,6 +235,7 @@ public class GunManager : MonoBehaviour
             ReloadTime = ReloadTimeS;
             BulletsPerTap = BulletsPerTapS;
             IsAllowedToHold = false;
+            CanHaveStabilRecoil = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4) && gun != ActiveGun.SubmachineGun)
         {
@@ -244,6 +249,7 @@ public class GunManager : MonoBehaviour
             ReloadTime = ReloadTimeSG;
             BulletsPerTap = BulletsPerTapSG;
             IsAllowedToHold = true;
+            CanHaveStabilRecoil = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5) && gun != ActiveGun.RocketLauncher)
         {
@@ -257,6 +263,7 @@ public class GunManager : MonoBehaviour
             ReloadTime = ReloadTimeRL;
             BulletsPerTap = BulletsPerTapRL;
             IsAllowedToHold = false;
+            CanHaveStabilRecoil = true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6) && gun != ActiveGun.RailGun)
         {
@@ -270,6 +277,7 @@ public class GunManager : MonoBehaviour
             ReloadTime = ReloadTimeRG;
             BulletsPerTap = BulletsPerTapRG;
             IsAllowedToHold = false;
+            CanHaveStabilRecoil = true;
         }
 
 
@@ -278,24 +286,27 @@ public class GunManager : MonoBehaviour
     Vector3 direction;
     void Shoot()
     {
+        readyToShoot = false;
         float x = Random.Range(-spread,spread);
         float y = Random.Range(-spread,spread);
-        if (FirstShot) 
+        float z = Random.Range(-spread, spread);
+        if (FirstShot && CanHaveStabilRecoil) 
         {
             direction = transform.forward;
             FirstShot= false;
         }
         else
         {
-         direction = transform.forward + new Vector3(x,y,0).normalized;
+         direction = transform.forward + new Vector3(x,y,z);
         }
 
         if(Physics.Raycast(transform.position,direction,out RaycastHit hitInfo, Mathf.Infinity, WhatIsEnemy)) 
         {
-            hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(damage);
+           //hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(damage);
         }
-        
 
+
+        Instantiate(BulletHole, hitInfo.point, Quaternion.FromToRotation(Vector3.forward, hitInfo.normal));
         RecoilStabilizationCDTimer = RecoilStabilizationCD;
         currentAmmo--;
         bulletsShots--;
