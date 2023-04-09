@@ -388,7 +388,7 @@ public class GunManager : MonoBehaviour
             }
         }
 
-        StartCoroutine( camShake.Shake(CamShakeAmout, CamShakeTime));
+        StartCoroutine(camShake.Shake(CamShakeAmout, CamShakeTime));
         Instantiate(BulletHole, hitInfo.point, Quaternion.FromToRotation(Vector3.forward, hitInfo.normal));
         RecoilStabilizationCDTimer = RecoilStabilizationCD;
         currentAmmo--;
