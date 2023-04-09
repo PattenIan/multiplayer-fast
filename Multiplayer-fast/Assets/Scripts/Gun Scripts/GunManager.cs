@@ -172,6 +172,7 @@ public class GunManager : MonoBehaviour
     [SerializeField,HideInInspector] private float RecoilStabilizationCDTimer;
     [SerializeField] private GameObject BulletHole;
     [SerializeField] private TextMeshProUGUI BulletText;
+    [SerializeField] private CamShake camShake;
     
 
     public enum ActiveGun
@@ -387,7 +388,7 @@ public class GunManager : MonoBehaviour
             }
         }
 
-
+        StartCoroutine( camShake.Shake(CamShakeAmout, CamShakeTime));
         Instantiate(BulletHole, hitInfo.point, Quaternion.FromToRotation(Vector3.forward, hitInfo.normal));
         RecoilStabilizationCDTimer = RecoilStabilizationCD;
         currentAmmo--;
