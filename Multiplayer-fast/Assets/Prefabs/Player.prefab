@@ -233,14 +233,14 @@ MonoBehaviour:
   SpreadS: 0.07
   CamShakeAmoutS: 0
   CamShakeTimeS: 0
-  SdamageS: 0
-  MdamageS: 0
-  LdamageS: 0
+  SdamageS: 20
+  MdamageS: 12
+  LdamageS: 4
   fireRateS: 1
   BulletsPerTapS: 6
   TimeBetweenShotsS: 0
-  ShortRangeS: 0
-  MediumRangeS: 0
+  ShortRangeS: 8
+  MediumRangeS: 15
   LongRangeS: 0
   magSizeS: 24
   currentAmmoS: 0
@@ -249,14 +249,14 @@ MonoBehaviour:
   SpreadAR: 0.017
   CamShakeAmoutAR: 0
   CamShakeTimeAR: 0
-  SdamageAR: 0
-  MdamageAR: 0
-  LdamageAR: 0
+  SdamageAR: 12
+  MdamageAR: 12
+  LdamageAR: 7
   fireRateAR: 0.15
   BulletsPerTapAR: 1
   TimeBetweenShotsAR: 0
-  ShortRangeAR: 0
-  MediumRangeAR: 0
+  ShortRangeAR: 17
+  MediumRangeAR: 40
   LongRangeAR: 0
   magSizeAR: 30
   currentAmmoAR: 0
@@ -265,14 +265,14 @@ MonoBehaviour:
   SpreadP: 0
   CamShakeAmoutP: 0
   CamShakeTimeP: 0
-  SdamageP: 0
-  MdamageP: 0
-  LdamageP: 0
+  SdamageP: 7
+  MdamageP: 5
+  LdamageP: 3
   fireRateP: 0.22
   BulletsPerTapP: 1
   TimeBetweenShotsP: 0
-  ShortRangeP: 0
-  MediumRangeP: 0
+  ShortRangeP: 15
+  MediumRangeP: 30
   LongRangeP: 0
   magSizeP: 13
   currentAmmoP: 0
@@ -297,14 +297,14 @@ MonoBehaviour:
   SpreadSG: 0.04
   CamShakeAmoutSG: 0
   CamShakeTimeSG: 0
-  SdamageSG: 0
-  MdamageSG: 0
-  LdamageSG: 0
+  SdamageSG: 10
+  MdamageSG: 7
+  LdamageSG: 4
   fireRateSG: 0.05
   BulletsPerTapSG: 1
   TimeBetweenShotsSG: 0
-  ShortRangeSG: 0
-  MediumRangeSG: 0
+  ShortRangeSG: 9
+  MediumRangeSG: 16
   LongRangeSG: 0
   magSizeSG: 30
   currentAmmoSG: 0
