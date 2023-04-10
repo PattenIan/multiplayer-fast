@@ -375,6 +375,9 @@ public class GunManager : MonoBehaviour
         if(Physics.Raycast(transform.position,direction,out RaycastHit hitInfo, Mathf.Infinity, WhatIsEnemy)) 
         {
             float DistToTarget = Vector3.Distance(transform.position, hitInfo.point);
+            if (hitInfo.transform.GetComponent<PlayerHealthScript>())
+            {
+
             if (DistToTarget < ShortRange)
             {
            hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Sdamage);
@@ -385,6 +388,7 @@ public class GunManager : MonoBehaviour
             } else if (DistToTarget > MediumRange)
             {
                 hitInfo.transform.GetComponent<PlayerHealthScript>().HealthUpdate(Ldamage);
+            }
             }
         }
 
