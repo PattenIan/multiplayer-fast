@@ -16,7 +16,7 @@ public class LobbyCreateUI : MonoBehaviour
     {
         createBtn.onClick.AddListener(() =>
         {
-            GameLobby.Instance.CreateLobby(inputLobbyName.text, false);
+            GameLobby.Instance.CreateLobby(inputLobbyName.text, accessToggle.isOn);
         });
         closeBtn.onClick.AddListener(() =>
         {
