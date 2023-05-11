@@ -4,9 +4,14 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.Networking;
 using System.Net.NetworkInformation;
+using System;
 
 public class PlayerNetworkMovement : NetworkBehaviour
 {
+    public static event EventHandler OnAnyPlayerSpawned;
+    public static PlayerNetworkMovement LocalInstance { get; private set; }
+
+
     [SerializeField, HideInInspector] public float HorizontalInput;
     [SerializeField, HideInInspector] public float VerticalInput;
 
@@ -52,6 +57,10 @@ public class PlayerNetworkMovement : NetworkBehaviour
     [SerializeField] Camera cam;
     [SerializeField, HideInInspector] public bool freeze;
     [SerializeField, HideInInspector] public bool activeGrappel;
+
+    [Header("Spawning")]
+    [SerializeField] private List<Vector3> spawnPositionList;
+    [SerializeField] private PlayerVisual playerVisual;
     enum MovementState
     {
         Freeze,
@@ -74,9 +83,22 @@ public class PlayerNetworkMovement : NetworkBehaviour
         if (IsLocalPlayer) return;
         cam.enabled = false;
 
-
-
+        PlayerData playerData = FastGameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
+        playerVisual.SetPlayerColor(FastGameMultiplayer.Instance.GetPlayerColor(playerData.colorId));
     }
+
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner)
+        {
+            LocalInstance = this;
+        }
+
+        transform.position = spawnPositionList[FastGameMultiplayer.Instance.GetPlayerDataIndexFromClientId(OwnerClientId)];
+
+        OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
+    }
+
     private void Update()
     {
         if (!IsOwner) { return; }
